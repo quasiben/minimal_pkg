@@ -2,6 +2,8 @@ package: minimal_pkg
 
 platform:
   - linux-64
+  - win-64
+  - osx-64
 
 engine:
    - python=2
@@ -16,9 +18,9 @@ script:
   - ls -l /opt/anaconda/conda-bld/*
   - conda convert -o dist -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
   - ls -l dist/
-  - cp -r dist/*.tar.bz2 /opt/anaconda/conda-bld/os-x64/
+  - cp -r dist/minimal_pkg*.tar.bz2 /opt/anaconda/conda-bld/os-x64/
   - conda convert -o dist -p win-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
-  - cp -r dist/*.tar.bz2 /opt/anaconda/conda-bld/win-64/
+  - cp -r dist/minimal_pkg*.tar.bz2 /opt/anaconda/conda-bld/win-64/
   - ls dist/
 
 build_targets:
