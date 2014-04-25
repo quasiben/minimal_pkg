@@ -12,7 +12,8 @@ before_script:
 script:
   - conda build conda.recipe
   - mkdir -p dist
-  - conda convert -o win-64 -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
+  - conda convert -o dist -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
+  - ls dist/
   - cp dist/*.tar.bz2 /opt/anaconda/conda-bld/linux-64/
 
 build_targets:
