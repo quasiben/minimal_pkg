@@ -11,22 +11,18 @@ engine:
 before_script:
   - python -V
 
-script:
-  - conda build conda.recipe
-  - mkdir -p dist
-  - mkdir -p /opt/anaconda/conda-bld/win-64 /opt/anaconda/conda-bld/osx-64
-  - ls -l /opt/anaconda/conda-bld/
-  - conda convert -o dist -p win-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
-  - cp -r dist/$filename /opt/anaconda/conda-bld/win-64/$filename
-  - ls -l dist/
-  - cd dist
-  - rm $filename
-  - conda convert -o dist -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
-  - filename=`ls dist/minimal_pkg*.tar.bz2`
-  - cp -r dist/$filename /opt/anaconda/conda-bld/os-x64/$filename
-  - conda convert -o dist -p win-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
-  - cp -r dist/$filename /opt/anaconda/conda-bld/win-64/$filename
-  - ls dist/
+script: |
+  conda build conda.recipe
+  mkdir -p dist_osx dist_win
+  mkdir -p /opt/anaconda/conda-bld/win-64 /opt/anaconda/conda-bld/osx-64
+  ls -l /opt/anaconda/conda-bld/
+  conda convert -o dist_win -p win-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
+  cp -r dist_win/$filename /opt/anaconda/conda-bld/win-64/$filename
+  ls -l dist_win/
+  conda convert -o dist_osx -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
+  filename=`ls dist_osx/minimal_pkg*.tar.bz2`
+  cp -r dist_osx/$filename /opt/anaconda/conda-bld/os-x64/$filename
+  ls -l /opt/anaconda/conda-bld/*
 
 build_targets:
     files: /opt/anaconda/conda-bld/*/minimal_pkg*.tar.bz2
