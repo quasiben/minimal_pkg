@@ -1,0 +1,21 @@
+package: minimal_pkg
+
+platform:
+  - linux-64
+
+engine:
+   - python=2
+   - python=3
+
+before_script:
+  - python -V
+
+script:
+  - conda build conda.recipe
+  - mkdir dist
+  - conda convert -o win-64 -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
+  - cp dist/* /opt/anaconda/conda-bld/linux-64/
+
+build_targets:
+    files: /opt/anaconda/dist/*/*.tar.bz2
+    channels: '%(branch)s'

@@ -1,0 +1,24 @@
+package:
+  name: minimal_pkg
+  version: 0.1
+
+build:
+  number: {{environ.get('BINSTAR_BUILD', 1)}}
+
+requirements:
+  build:
+    - python
+    - distribute
+
+  run:
+    - python
+
+test:
+  # Python imports
+  imports:
+    - minimal_pkg
+
+about:
+  home: https://github.com/quasiben/minimal_pkg
+  license: BSD
+
