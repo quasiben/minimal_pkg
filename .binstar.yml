@@ -13,7 +13,12 @@ script:
   - conda build conda.recipe
   - mkdir -p dist
   - conda convert -o dist -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
+  - conda convert -o dist -p win-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
+  - conda convert -o dist -p linux-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
   - ls dist/
+  - ls -l /opt/anaconda/conda-bld/*
+  - cp dist/*.tar.bz2 /opt/anaconda/conda-bld/win-64/
+  - cp dist/*.tar.bz2 /opt/anaconda/conda-bld/os-x64/
   - cp dist/*.tar.bz2 /opt/anaconda/conda-bld/linux-64/
 
 build_targets:
