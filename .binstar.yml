@@ -19,7 +19,8 @@ script:
   - conda convert -o dist -p win-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
   - cp -r dist/$filename /opt/anaconda/conda-bld/win-64/$filename
   - ls -l dist/
-  - rm dist/$filename
+  - cd dist
+  - rm $filename
   - conda convert -o dist -p osx-64 /opt/anaconda/conda-bld/linux-64/minimal_pkg*.tar.bz2
   - filename=`ls dist/minimal_pkg*.tar.bz2`
   - cp -r dist/$filename /opt/anaconda/conda-bld/os-x64/$filename
