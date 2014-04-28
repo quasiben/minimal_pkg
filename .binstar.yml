@@ -9,7 +9,7 @@ engine:
 before_script:
   - python -V
 
-script: |
+script: >
   conda build conda.recipe;
   mkdir -p dist_osx dist_win;
   mkdir -p /opt/anaconda/conda-bld/win-64 /opt/anaconda/conda-bld/osx-64;
